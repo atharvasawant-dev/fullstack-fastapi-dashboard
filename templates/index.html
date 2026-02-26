@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1'/>
+    <title>Developer Dashboard</title>
+    <link rel='stylesheet' href='/static/styles.css'/>
+  </head>
+  <body>
+    <main class='container'>
+      <h1>Developer Dashboard</h1>
+      <p>Hiring-optimized full-stack FastAPI app (UI + API).</p>
+      <section class='card'>
+        <h2>Live Metrics</h2>
+        <pre id='metrics'>Loading...</pre>
+      </section>
+    </main>
+    <script>
+      fetch('/api/metrics')
+        .then(r => r.json())
+        .then(data => { document.getElementById('metrics').textContent = JSON.stringify(data, null, 2); })
+        .catch(err => { document.getElementById('metrics').textContent = String(err); });
+    </script>
+  </body>
+</html>
